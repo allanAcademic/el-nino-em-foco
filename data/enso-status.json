@@ -6,10 +6,23 @@
   "nextUpdateAt": "2026-10-08",
   "summaryPt": "O El Niño está se fortalecendo. Segundo o CPC/NOAA, há mais de 90% de chance de um evento muito forte no outono e inverno do Hemisfério Norte 2026-27.",
   "highlights": [
-    { "text": "Índice Niño-3.4 de +1,8 °C em agosto de 2026.", "label": "observacao" },
-    { "text": "Chance de 75% de um evento histórico em out-dez de 2026.", "label": "previsao" }
+    {
+      "text": "Índice Niño-3.4 de +1,8 °C em agosto de 2026.",
+      "label": "observacao"
+    },
+    {
+      "text": "Chance de 75% de um evento histórico em out-dez de 2026.",
+      "label": "previsao"
+    }
   ],
-  "source": { "name": "NOAA/CPC — ENSO Diagnostic Discussion", "url": "https://www.cpc.ncep.noaa.gov/products/analysis_monitoring/enso_advisory/ensodisc.html" },
+  "source": {
+    "name": "NOAA/CPC — ENSO Diagnostic Discussion",
+    "url": "https://www.cpc.ncep.noaa.gov/products/analysis_monitoring/enso_advisory/ensodisc.html"
+  },
   "curatedAt": "2026-10-20",
-  "curatedBy": "A VERIFICAR (nome do mantenedor)"
+  "curatedBy": "A VERIFICAR (nome do mantenedor)",
+  "nino34": {
+    "value": 1.8,
+    "period": "agosto de 2026"
+  }
 }
