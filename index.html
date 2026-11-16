@@ -1,33 +1,229 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="pt-BR">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>El Niño em Foco</title>
-<meta name="description" content="Aplicação educativa e não oficial sobre El Niño, com foco no Brasil e no município de São Paulo.">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css">
+<title>Pacífico & Clima – El Niño, La Niña e o tempo no Brasil</title>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-<a class="skip" href="#app">Ir para o conteúdo</a>
-<header class="top">
-  <a class="brand" href="#/">El Niño <span>em foco</span></a>
-  <nav aria-label="Principal" id="nav">
-    <a href="#/">Início</a><a href="#/entenda">Entenda</a><a href="#/impactos">Impactos</a>
-    <a href="#/mapa">Mapa</a><a href="#/noticias">Notícias</a><a href="#/fontes">Fontes</a>
-  </nav>
+<a class="skip" href="#main">pular para o conteúdo</a>
+<div class="wrap">
+<div class="a11y" role="group" aria-label="Acessibilidade"><span>acessibilidade:</span><button id="fm" aria-label="Diminuir fonte">A−</button><button id="fz" aria-label="Fonte padrão">A</button><button id="fp" aria-label="Aumentar fonte">A+</button><button id="hc" aria-pressed="false">alto contraste</button></div>
+<header>
+  <div class="hero">
+    <div>
+      <div class="sq"><i></i><i></i><i></i></div>
+      <h1>pacífico<br>& clima</h1>
+      <p>Como a temperatura do Oceano Pacífico muda o tempo no mundo e como está o clima agora no Brasil.</p>
+      <div class="enso" id="enso" aria-live="polite"></div>
+    </div>
+    <div class="art" data-art="cloud"></div>
+  </div>
 </header>
-<aside class="aviso" role="note">
-  Site <strong>educativo e não oficial</strong>. Não emite alertas nem previsões próprias.
-  Para avisos e previsões oficiais, consulte o <a href="https://www.cptec.inpe.br" rel="noopener">INPE/CPTEC</a>
-  e o <a href="https://portal.inmet.gov.br" rel="noopener">INMET</a>.
-</aside>
-<main id="app" tabindex="-1"><p>Carregando…</p></main>
-<footer class="foot">
-  <p><a href="https://open-meteo.com/" rel="noopener">Weather data by Open-Meteo.com</a> · Mapa © <a href="https://www.openstreetmap.org/copyright" rel="noopener">colaboradores do OpenStreetMap</a>.
-  Projeto acadêmico alinhado ao ODS 11.</p>
+<nav role="tablist">
+  <button role="tab" aria-selected="true" data-t="info">informação</button>
+  <button role="tab" aria-selected="false" data-t="clima">clima</button>
+  <button role="tab" aria-selected="false" data-t="news">notícias</button>
+  <button role="tab" aria-selected="false" data-t="about">quem somos</button>
+</nav>
+<main id="main">
+
+<section id="info">
+  <div class="slide">
+    <div class="split">
+      <div>
+        <div class="sq"><i></i><i></i><i></i></div>
+        <h2>o que é o el niño?</h2>
+        <p class="lead">O El Niño é uma das duas fases do ENOS (El Niño–Oscilação Sul), um ciclo natural da temperatura da água no Pacífico Equatorial. Suas fases duram de 9 a 12 meses e se repetem a cada 2 a 7 anos.</p>
+      </div>
+      <div class="art sm" data-art="waves"></div>
+    </div>
+    <p style="max-width:72ch;margin:22px 0 0"><b>Como funciona.</b> Em condições normais, os ventos alísios sopram de leste para oeste e empurram a água quente do Pacífico em direção à Indonésia e à Austrália. Na costa da América do Sul, águas frias e ricas em nutrientes sobem do fundo, o que favorece a pesca. No El Niño, esses ventos enfraquecem, a água quente avança para o leste e as chuvas se deslocam para o centro e o leste do Pacífico. O nome vem dos pescadores peruanos, que notavam o aquecimento da água perto do Natal e o chamaram de "o menino", em referência ao Menino Jesus.</p>
+    <p style="max-width:72ch;margin:14px 0 0"><b>La Niña e como medimos.</b> A La Niña ("a menina") é o oposto: os alísios ficam mais fortes, as águas frias do leste do Pacífico se intensificam e a chuva se concentra mais a oeste. Os cientistas medem as duas fases pela temperatura da água em uma faixa central do Pacífico, a região Niño 3.4. Quando ela fica 0,5 °C ou mais acima da média por alguns meses seguidos, há um El Niño; quando fica 0,5 °C ou mais abaixo, há uma La Niña. Quanto maior o desvio, mais forte o evento. A NOAA hoje usa o RONI, um índice relativo que desconta o aquecimento médio dos trópicos.</p>
+    <div class="steps">
+      <div class="st"><b>1</b><span>ventos</span>Os alísios enfraquecem ou se intensificam.</div>
+      <div class="st"><b>2</b><span>oceano</span>A água quente avança para leste ou recua para oeste.</div>
+      <div class="st"><b>3</b><span>atmosfera</span>As zonas de chuva mudam de lugar.</div>
+      <div class="st"><b>4</b><span>mundo</span>Secas, enchentes e calor trocam de região.</div>
+    </div>
+  </div>
+
+  <div class="slide">
+    <div class="sq"><i></i><i></i><i></i></div>
+    <h2>el niño e la niña</h2>
+    <div class="seg" id="phase">
+      <button aria-pressed="true" data-p="nino">el niño</button>
+      <button aria-pressed="false" data-p="nina">la niña</button>
+      <button aria-pressed="false" data-p="neu">neutro</button>
+    </div>
+    <div id="ocean"></div>
+    <div class="box" id="phaseText"></div>
+  </div>
+
+  <div class="slide">
+    <div class="sq"><i></i><i></i><i></i></div>
+    <h2>quem mais sofre com o el niño</h2>
+    <p class="lead" style="margin:0 0 20px">O El Niño não atinge todo mundo do mesmo jeito. Estes são alguns dos casos mais marcantes e de maior impacto, e a lista pode mudar a cada evento.</p>
+    <div class="grid">
+      <div class="box"><span class="tag">chuva no sul · seca no norte</span><h3>brasil</h3><p>O Sul recebe chuva acima da média, com enchentes. A Amazônia e o Nordeste ficam mais secos e quentes. Em 2023–24, a seca na Amazônia foi uma das mais severas já registradas, com o El Niño somado ao aquecimento do Atlântico Norte.</p></div>
+      <div class="box"><span class="tag">chuvas e enchentes</span><h3>peru e equador</h3><p>Águas quentes na costa trazem chuvas fortes, enchentes e deslizamentos. A pesca da anchoveta, muito importante para o Peru, costuma cair.</p></div>
+      <div class="box"><span class="tag">inverno úmido no sul</span><h3>estados unidos</h3><p>O sul do país e a Califórnia tendem a ter invernos mais chuvosos, com risco de enchentes e deslizamentos. O Atlântico costuma ter menos furacões.</p></div>
+      <div class="box"><span class="tag">seca</span><h3>áfrica austral</h3><p>Zimbábue, Zâmbia e Malaui tendem a ter menos chuva e quebra de safra. Na seca de 2023–24, esses países declararam emergência ou desastre por seca.</p></div>
+      <div class="box"><span class="tag">chuva forte</span><h3>áfrica oriental</h3><p>Quênia, Somália e Etiópia costumam ter chuva acima da média no fim do ano, com enchentes e deslocamento de famílias.</p></div>
+      <div class="box"><span class="tag">monção fraca</span><h3>índia</h3><p>Em alguns anos de El Niño a monção enfraquece, o que reduz a chuva e ameaça safras e o abastecimento de água.</p></div>
+      <div class="box"><span class="tag">seca e incêndios</span><h3>indonésia e austrália</h3><p>Menos chuva eleva o risco de seca, queimadas e incêndios florestais. Na Indonésia, as queimadas de 2015 espalharam fumaça pela região.</p></div>
+      <div class="box"><span class="tag">efeito fraco e incerto</span><h3>frança e europa</h3><p>A influência é bem menor e menos regular do que nos trópicos. Na Europa, o clima responde mais a outros padrões, como a Oscilação do Atlântico Norte.</p></div>
+    </div>
+    <p class="meta" style="margin:18px 0 0;font-size:14px">Os efeitos variam de evento para evento e dependem também de outros fatores climáticos e da mudança do clima.</p>
+  </div>
+  <div class="slide">
+    <div class="sq"><i></i><i></i><i></i></div>
+    <h2>linha do tempo dos grandes el niños</h2>
+    <p class="lead" style="margin:0 0 22px">Alguns eventos fortes ajudam a entender o que esperar. Cada El Niño é diferente, e o aquecimento global se soma aos seus efeitos.</p>
+    <div class="tl">
+      <div class="it "><div class="yr">1997–98</div><h3>um dos mais fortes do século xx</h3><p>Chuvas e enchentes na costa do Peru e do Equador, seca e grandes queimadas na Indonésia e incêndios em Roraima, no Brasil, em 1998.</p></div>
+      <div class="it "><div class="yr">2015–16</div><h3>forte e longo</h3><p>Branqueamento de corais em grande escala, queimadas na Indonésia, seca severa na Etiópia e no sul da África e seca na Amazônia e no Nordeste. 2016 virou o ano mais quente já registrado até então.</p></div>
+      <div class="it "><div class="yr">2023–24</div><h3>recordes de calor</h3><p>Seca histórica na Amazônia em 2023, restrições no Canal do Panamá por falta de chuva e seca no sul da África em 2024. Os anos de 2023 e 2024 bateram recordes de temperatura global.</p></div>
+      <div class="it now"><div class="yr">2026–27</div><h3>em andamento</h3><p>Segundo a NOAA, o El Niño continua se fortalecendo e deve ser forte a muito forte até o início de 2027. Os impactos ficam mais prováveis, mas não são garantidos.</p></div>
+    </div>
+  </div>
+</section>
+
+<section id="about" hidden>
+  <div class="slide">
+    <div class="sq"><i></i><i></i><i></i></div>
+    <h2>quem somos</h2>
+    <p class="lead">Somos um grupo de estudantes de graduação que criou este site para explicar o El Niño e a La Niña, mostrar o tempo no Brasil e ligar o tema ao ODS 13.</p>
+    <div class="grid team"><div class="box person"><b>A</b><h3>Allan</h3></div><div class="box person"><b>E</b><h3>Eliseu</h3></div><div class="box person"><b>P</b><h3>Pedro</h3></div><div class="box person"><b>K</b><h3>Kayk</h3></div><div class="box person"><b>V</b><h3>Vinicius</h3></div></div>
+  </div>
+
+  <div class="slide">
+    <div class="sq"><i></i><i></i><i></i></div>
+    <h2>por que fizemos este site</h2>
+    <div class="grid">
+      <div class="box"><h3>engenharia de software</h3><p>O site é um trabalho do curso de Engenharia de Software. Nele aplicamos o que aprendemos: levantamento de requisitos, design de interface, programação web e uso de APIs abertas para tempo e notícias.</p></div>
+      <div class="box"><h3>itinerário extensionista</h3><p>É a matéria em que usamos as competências adquiridas na faculdade para ajudar a sociedade. No Brasil, a extensão faz parte do currículo: a Resolução CNE/CES nº 7/2018 pede ao menos 10% da carga horária dos cursos de graduação em atividades de extensão.</p></div>
+    </div>
+    <p style="margin:18px 0 0;max-width:70ch">Nossa contribuição social é informar de forma simples e gratuita sobre fenômenos que afetam a agricultura, a água, a saúde e a vida nas cidades.</p>
+  </div>
+
+  <div class="slide">
+    <div class="sq"><i></i><i></i><i></i></div>
+    <h2>nossa instituição</h2>
+    <div class="grid">
+      <div class="box"><h3>unicsul</h3><p>Este trabalho foi desenvolvido por estudantes da UNICSUL (Universidade Cruzeiro do Sul), em São Paulo, dentro do curso de Engenharia de Software.</p></div>
+      <div class="box"><h3>professor valter de sales</h3><p>Nosso professor nesta atividade. Registramos aqui o agradecimento pelo ensino e pelo acompanhamento durante o desenvolvimento do projeto.</p></div>
+    </div>
+  </div>
+
+  <div class="slide solid">
+    <div class="split">
+      <div>
+        <div class="sq"><i></i><i></i><i></i></div>
+        <h2>ods e o ods 13: ação contra a mudança do clima</h2>
+        <p class="lead">Os ODS são 17 metas globais da ONU, adotadas em 2015 na Agenda 2030. O ODS 13 pede medidas urgentes contra a mudança climática e seus impactos.</p>
+      </div>
+      <div class="art sm" style="color:#eae9e5" data-art="sun"></div>
+    </div>
+    <div class="split" style="grid-template-columns:1fr 1fr;margin-top:22px;align-items:stretch">
+      <div class="box">Fortalecer a resiliência e a adaptação a riscos climáticos e desastres naturais.</div>
+      <div class="box">Integrar medidas de clima às políticas, estratégias e planejamentos nacionais.</div>
+      <div class="box">Ampliar a educação, a conscientização e a capacidade de mitigação e alerta precoce.</div>
+      <div class="box">Apoiar financeiramente os países em desenvolvimento, conforme a Convenção do Clima da ONU.</div>
+    </div>
+    <p style="margin:20px 0 0;max-width:70ch">El Niño e mudança climática são fenômenos diferentes, mas o aquecimento global pode intensificar secas, ondas de calor e chuvas extremas. Prever o ENOS ajuda na adaptação (meta 13.1).</p>
+  </div>
+
+  <div class="slide">
+    <div class="sq"><i></i><i></i><i></i></div>
+    <h2>o que você pode fazer</h2>
+    <p class="lead" style="margin:0 0 20px">Pequenas ações somam e se ligam às metas do ODS 13, como a de ampliar a educação e a conscientização sobre o clima.</p>
+    <div class="grid">
+      <div class="box"><h3>economize energia e água</h3><p>Apague luzes, tome banhos mais curtos e conserte vazamentos. Em anos de El Niño, a seca pode afetar reservatórios.</p></div>
+      <div class="box"><h3>mova-se melhor</h3><p>Prefira caminhar, pedalar ou usar transporte coletivo e carona solidária quando der.</p></div>
+      <div class="box"><h3>desperdice menos</h3><p>Planeje as compras, aproveite sobras e separe o lixo reciclável. Menos lixo e menos comida jogada fora reduzem emissões.</p></div>
+      <div class="box"><h3>plante e proteja áreas verdes</h3><p>Árvores refrescam as cidades e ajudam a drenar a chuva. Cuide das praças e dos córregos do seu bairro.</p></div>
+      <div class="box"><h3>prepare-se para eventos extremos</h3><p>Cadastre seu CEP no alerta da Defesa Civil (SMS 40199) e saiba o telefone 199. Combine com a família um ponto de encontro.</p></div>
+      <div class="box"><h3>informe-se e compartilhe</h3><p>Confira as fontes antes de repassar uma notícia sobre clima e converse sobre o tema na escola, no trabalho e em casa.</p></div>
+    </div>
+  </div>
+
+  <div class="slide">
+    <div class="sq"><i></i><i></i><i></i></div>
+    <h2>apoie e acompanhe</h2>
+    <p class="lead" style="margin:0 0 20px">Algumas organizações brasileiras e internacionais que atuam com clima e desenvolvimento sustentável. Confira os canais oficiais de cada uma antes de doar ou participar.</p>
+    <h3>clima · ods 13</h3>
+    <div class="grid" style="margin-bottom:22px">
+      <a class="box link" href="https://www.oc.eco.br" target="_blank" rel="noopener"><h3>Observatório do Clima</h3><span>Rede de organizações da sociedade civil que acompanha as políticas climáticas do Brasil.</span></a>
+      <a class="box link" href="https://www.wwf.org.br" target="_blank" rel="noopener"><h3>WWF-Brasil</h3><span>Conservação da natureza e ação climática, com projetos em vários biomas.</span></a>
+      <a class="box link" href="https://www.greenpeace.org/brasil" target="_blank" rel="noopener"><h3>Greenpeace Brasil</h3><span>Campanhas e pesquisa contra o desmatamento e por energia limpa.</span></a>
+      <a class="box link" href="https://ipam.org.br" target="_blank" rel="noopener"><h3>IPAM Amazônia</h3><span>Pesquisa científica sobre clima, floresta e desenvolvimento na Amazônia.</span></a>
+      <a class="box link" href="https://www.sosma.org.br" target="_blank" rel="noopener"><h3>SOS Mata Atlântica</h3><span>Defesa e restauração da Mata Atlântica, com foco em água e clima.</span></a>
+      <a class="box link" href="https://350.org" target="_blank" rel="noopener"><h3>350.org</h3><span>Movimento global por menos combustíveis fósseis e por justiça climática.</span></a>
+    </div>
+    <h3>ods em geral</h3>
+    <div class="grid" style="margin-bottom:22px">
+      <a class="box link" href="https://brasil.un.org" target="_blank" rel="noopener"><h3>ONU Brasil</h3><span>Informações sobre a Agenda 2030 e os 17 Objetivos de Desenvolvimento Sustentável.</span></a>
+      <a class="box link" href="https://pactoglobal.org.br" target="_blank" rel="noopener"><h3>Pacto Global – Rede Brasil</h3><span>Mobiliza empresas e organizações para cumprir os ODS.</span></a>
+      <a class="box link" href="https://www.socioambiental.org" target="_blank" rel="noopener"><h3>Instituto Socioambiental (ISA)</h3><span>Direitos socioambientais, povos indígenas e populações tradicionais.</span></a>
+    </div>
+    <h3>alertas e apoio em desastres</h3>
+    <div class="grid">
+      <a class="box link" href="https://www.cemaden.gov.br" target="_blank" rel="noopener"><h3>Cemaden</h3><span>Centro nacional de monitoramento e alertas de desastres naturais.</span></a>
+      <a class="box link" href="https://cruzvermelha.org.br" target="_blank" rel="noopener"><h3>Cruz Vermelha Brasileira</h3><span>Apoio humanitário a famílias atingidas por enchentes e outros desastres.</span></a>
+    </div>
+  </div>
+</section>
+
+<section id="clima" hidden>
+  <div class="slide">
+    <div class="sq"><i></i><i></i><i></i></div>
+    <h2 id="cityTitle">são paulo agora</h2>
+    <div class="seg search"><input id="q" type="search" placeholder="Buscar outra cidade (ex.: Curitiba)" aria-label="Buscar cidade"><button id="qb">buscar</button></div>
+    <div class="seg" id="res"></div>
+    <div id="sp">Carregando…</div>
+  </div>
+  <div class="slide">
+    <div class="sq"><i></i><i></i><i></i></div>
+    <h2>alertas para os próximos dias</h2>
+    <div class="grid" id="alerts">Carregando…</div>
+    <p class="meta" style="margin:16px 0 0;font-size:14px">Aviso automático e não oficial, calculado pela previsão. Para alertas oficiais, use o Defesa Civil Alerta (SMS 40199), o telefone 199, o INMET e o Cemaden.</p>
+  </div>
+  <div class="slide">
+    <div class="sq"><i></i><i></i><i></i></div>
+    <h2>temperatura por estado</h2>
+    <p class="meta" style="margin-top:0">Temperatura atual na capital de cada estado.</p>
+    <div class="tiles" id="tiles"></div>
+    <div class="legend"></div>
+    <div class="meta" style="display:flex;justify-content:space-between;max-width:560px;font-size:14px"><span>15 °C</span><span>38 °C</span></div>
+  </div>
+</section>
+
+<section id="news" hidden>
+  <div class="slide">
+    <div class="sq"><i></i><i></i><i></i></div>
+    <h2>impactos climáticos recentes do enos</h2>
+    <div class="seg" id="nf">
+      <button aria-pressed="true" data-q="br">brasil</button>
+      <button aria-pressed="false" data-q="world">mundo</button>
+    </div>
+    <div class="news" id="list">Carregando…</div>
+  </div>
+</section>
+
+</main>
+<footer>
+  <div class="ia">
+    <b>declaração de uso de inteligência artificial</b>
+    <p><b>Art. 1º</b> Este site foi desenvolvido com o auxílio de inteligência artificial generativa (Claude, da Anthropic), utilizada na estrutura do código, no design visual e na redação de textos.</p>
+    <p><b>Art. 2º</b> Os dados de tempo e de notícias vêm de serviços externos (Open-Meteo e Google Notícias), e o status do ENOS é da NOAA/CPC, atualizado manualmente. Textos produzidos com IA podem conter imprecisões.</p>
+    <p><b>Parágrafo único.</b> A responsabilidade final pelo conteúdo publicado é do grupo autor. Para alertas oficiais, consulte INPE, INMET, Cemaden e NOAA.</p>
+  </div>
 </footer>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
-<script src="app.js"></script>
+</div>
+
+<script src="app.js" defer></script>
 </body>
 </html>
