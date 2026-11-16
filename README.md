@@ -12,22 +12,17 @@ Site educativo sobre o fenômeno El Niño e La Niña, o ODS 13 e o clima no Bras
 - **Quem somos:** grupo, instituição, ODS e ODS 13, dicas do que fazer e organizações para apoiar.
 - **Acessibilidade:** ajuste do tamanho da fonte e modo de alto contraste.
 - **Status do ENOS** no cabeçalho, com base no boletim mensal da NOAA/CPC.
+- Links diretos para cada aba: `#info`, `#clima`, `#news` e `#about`.
 
 ## Estrutura
 
-```
-el-nino-em-foco/
-├── index.html            # estrutura e conteúdo das páginas
-├── styles.css            # estilos
-├── app.js                # lógica: abas, APIs, alertas, acessibilidade
-├── data/
-│   └── enso-status.json  # status do ENOS (atualizar todo mês)
-└── README.md
-```
+O site é **um único arquivo autossuficiente** (`index.html`, com HTML, CSS e JavaScript juntos), sem dependências e sem etapa de build. Isso facilita a correção e a publicação no GitHub Pages: basta existir um `index.html` na raiz.
+
+Dentro do arquivo, o código está dividido em blocos comentados: estilos (`<style>`), conteúdo (HTML) e lógica (`<script>`).
 
 ## Como rodar localmente
 
-O site não precisa de instalação. Para testar a leitura do arquivo de dados, sirva a pasta com um servidor local:
+Abra o `index.html` no navegador, ou sirva a pasta com um servidor local:
 
 ```bash
 python -m http.server 8000
@@ -36,7 +31,7 @@ python -m http.server 8000
 
 ## Como atualizar o status do ENOS
 
-A NOAA publica um boletim por mês (segunda quinta-feira). Edite `data/enso-status.json`: `fase`, `txt`, `data` e `prox` (formato AAAA-MM-DD) e `url`. Se a data de `prox` passar, o site mostra um aviso de possível desatualização.
+A NOAA publica um boletim por mês. No `index.html`, procure por `ENSO_PADRAO` e edite `fase`, `txt`, `data` e `prox` (formato AAAA-MM-DD) e `url`. Se existir o arquivo `data/enso-status.json`, ele tem prioridade sobre esses valores. Se a data de `prox` passar, o site mostra um aviso de possível desatualização.
 
 ## Fontes de dados
 
