@@ -3,9 +3,99 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Pacífico & Clima – El Niño, La Niña e o tempo no Brasil</title>
+<title>El Niño em Foco – El Niño, La Niña e o tempo no Brasil</title>
 <link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="styles.css">
+<style>
+/* El Niño em foco — Pacífico & Clima | estilos */
+:root{--bg:#eae9e5;--acc:#ca422a;--ink:#2b1712;--mut:#6b5b55;--line:#d3d1ca;--card:#f3f2ee}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.55 Archivo,system-ui,sans-serif}
+body{transition:background .4s,color .4s}
+body.inv{--bg:#ca422a;--acc:#eae9e5;--ink:#f6e9e4;--mut:#f0cfc6;--line:#e07a66;--card:#b23a25}
+body.inv .slide.solid{color:#2b1712}
+body.inv .slide.solid h2,body.inv .slide.solid h3{color:#ca422a}
+body.inv .slide.solid .sq i{background:#ca422a}
+body.inv .slide.solid .box{border-color:#ca422a}
+body.inv .slide.solid .meta{color:#6b5b55}
+body.inv .tile{box-shadow:inset 0 0 0 1.5px #eae9e5}
+body.inv .legend{box-shadow:0 0 0 1.5px #eae9e5}
+body.inv nav button:hover,body.inv .seg button:hover{background:#eae9e51a}
+body.inv button:focus-visible,body.inv a:focus-visible{outline-color:#eae9e5}
+h1,h2,h3{font-weight:800;font-stretch:68%;text-transform:lowercase;letter-spacing:-.01em;line-height:.9;margin:0;color:var(--acc)}
+h1{font-size:clamp(56px,11vw,128px)}
+h2{font-size:clamp(40px,6.5vw,72px);margin-bottom:16px}
+h3{font-size:30px;margin-bottom:8px}
+.wrap{max-width:1040px;margin:auto;padding:0 20px}
+.sq{display:flex;gap:4px;margin-bottom:22px}.sq i{width:13px;height:13px;background:var(--acc)}
+.pill{display:inline-block;border:1.5px solid var(--acc);color:var(--acc);border-radius:99px;padding:3px 14px;font-size:13px;font-weight:600;letter-spacing:.04em;text-transform:uppercase}
+header{padding:36px 0 0}
+.hero{display:grid;grid-template-columns:1.3fr 1fr;gap:20px;align-items:center;background:var(--card);border:1px solid var(--line);border-radius:18px;padding:36px;overflow:hidden}
+.hero p{max-width:34ch;margin:18px 0 0;color:var(--mut);font-size:18px}
+.art{color:var(--acc)}.art svg{width:100%;height:auto;display:block}
+nav{display:flex;gap:8px;margin:22px 0;flex-wrap:wrap}
+nav button,.seg button{font:700 15px Archivo,sans-serif;font-stretch:85%;text-transform:lowercase;border:1.5px solid var(--acc);background:transparent;color:var(--acc);padding:9px 22px;border-radius:99px;cursor:pointer;transition:.15s}
+nav button:hover,.seg button:hover{background:#ca422a1a}
+nav button[aria-selected=true],.seg button[aria-pressed=true]{background:var(--acc);color:var(--bg)}
+button:focus-visible,a:focus-visible{outline:3px solid var(--ink);outline-offset:2px}
+section[hidden]{display:none}
+.slide{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:36px;margin-bottom:20px;position:relative;overflow:hidden}
+.slide.solid{background:var(--acc);border-color:var(--acc);color:#f6e9e4}
+.slide.solid h2,.slide.solid h3{color:var(--bg)}.slide.solid .sq i{background:var(--bg)}
+.split{display:grid;grid-template-columns:1.2fr 1fr;gap:28px;align-items:center}
+.box{border:1.5px solid var(--acc);border-radius:4px;padding:14px 18px}
+.solid .box{border-color:#eae9e5aa}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:12px}
+.grid .box h3{font-size:28px;margin:8px 0 6px}.grid .box p,.link span{margin:0;font-size:15px}
+.tag{display:inline-block;background:var(--acc);color:var(--bg);font-size:12px;font-weight:700;padding:2px 10px;border-radius:99px;text-transform:lowercase}
+.team{grid-template-columns:repeat(auto-fit,minmax(150px,1fr))}
+.person{text-align:center;padding:20px 10px}
+.person b{display:grid;place-items:center;width:64px;height:64px;margin:0 auto 6px;border-radius:50%;background:var(--acc);color:var(--bg);font:800 34px Archivo;font-stretch:70%}
+.link{display:block;color:var(--ink);text-decoration:none;transition:.15s}
+.link:hover{background:var(--acc);color:var(--bg)}.link:hover h3{color:var(--bg)}
+.a11y{display:flex;gap:6px;flex-wrap:wrap;align-items:center;padding:10px 0 0;font-size:13px}
+.a11y button{font:700 13px Archivo,sans-serif;border:1.5px solid var(--acc);background:transparent;color:var(--acc);border-radius:99px;padding:3px 12px;cursor:pointer}
+.a11y button:hover,.a11y button[aria-pressed=true]{background:var(--acc);color:var(--bg)}
+.skip{position:absolute;left:-999px}.skip:focus{left:10px;top:10px;background:var(--bg);color:var(--acc);padding:6px 12px;z-index:9}
+.enso{margin-top:16px;border:1.5px solid var(--acc);border-radius:10px;padding:10px 14px;font-size:14px;max-width:46ch;color:var(--ink)}
+.enso b{display:block;font:800 28px/1 Archivo;font-stretch:68%;color:var(--acc);text-transform:lowercase;margin:2px 0 4px}
+.enso a{color:var(--acc);font-weight:600}
+.tl{border-left:2px solid var(--acc);margin-left:8px;padding-left:22px}
+.tl .it{position:relative;padding-bottom:20px}.tl .it:before{content:"";position:absolute;left:-30px;top:8px;width:14px;height:14px;border-radius:50%;background:var(--acc)}
+.tl .yr{font:800 40px/1 Archivo;font-stretch:66%;color:var(--acc)}.tl p{margin:4px 0 0;max-width:68ch}
+.tl .now:before{box-shadow:0 0 0 5px #ca422a44}
+.search{align-items:stretch}.search input{flex:1;min-width:200px;font:600 16px Archivo,sans-serif;padding:9px 16px;border:1.5px solid var(--acc);border-radius:99px;background:transparent;color:var(--ink)}
+.search input::placeholder{color:var(--mut)}
+.alert{border-left:6px solid var(--acc)}.alert h3{font-size:24px;margin:0 0 4px}.alert p{margin:0;font-size:15px}
+body.hc{--bg:#fff;--acc:#8f1c08;--ink:#000;--mut:#1f1f1f;--line:#000;--card:#fff}
+body.hc .slide.solid{color:#fff}body.hc .slide.solid h2,body.hc .slide.solid h3{color:#fff}body.hc .slide.solid .sq i{background:#fff}
+body.hc a{text-decoration:underline}body.hc .slide,body.hc .hero{border-color:#000;border-width:2px}
+.lead{font-size:18px;max-width:52ch}
+.steps{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:26px;position:relative}
+.steps:before{content:"";position:absolute;top:21px;left:6%;right:6%;border-top:2px solid var(--acc)}
+.st{position:relative;text-align:center;font-size:14px}
+.st b{display:grid;place-items:center;width:44px;height:44px;margin:0 auto 10px;border-radius:50%;background:var(--acc);color:var(--bg);font:800 20px Archivo;font-stretch:80%;border:4px solid var(--card)}
+.st span{display:block;font-weight:700;color:var(--acc);text-transform:lowercase;font-stretch:80%;font-size:17px}
+.seg{display:flex;gap:8px;flex-wrap:wrap;margin:6px 0 16px}
+#ocean{height:110px;border-radius:10px;margin-bottom:16px;transition:background .5s}
+.nowgrid{display:grid;grid-template-columns:minmax(220px,.8fr) 2fr;gap:16px}
+.big{font:800 110px/.85 Archivo;font-stretch:66%;letter-spacing:-.02em}
+.days{display:grid;grid-template-columns:repeat(auto-fit,minmax(110px,1fr));gap:10px}
+.day{font-size:14px}.day b{display:block;font-stretch:80%;font-size:17px;color:var(--acc);text-transform:lowercase}
+.tiles{display:grid;grid-template-columns:repeat(7,1fr);gap:5px;max-width:560px}
+.tile{aspect-ratio:1;border-radius:5px;display:flex;flex-direction:column;align-items:center;justify-content:center;font:800 15px Archivo;font-stretch:80%}
+.tile small{font-weight:500;font-size:12px}
+.legend{height:12px;max-width:560px;border-radius:6px;background:linear-gradient(90deg,#d6d5d0,#ca422a,#5a1a0e);margin-top:14px}
+.news{counter-reset:n}
+.news a{display:grid;grid-template-columns:48px 1fr;gap:6px;padding:14px 10px;border-top:1.5px solid var(--acc);color:var(--ink);text-decoration:none;counter-increment:n}
+.news a:before{content:counter(n,decimal-leading-zero);font:800 26px Archivo;font-stretch:70%;color:var(--acc)}
+.news a:hover{background:var(--acc);color:var(--bg)}.news a:hover:before,.news a:hover small{color:var(--bg)}
+.news small{color:var(--mut)}
+.err{color:var(--acc);font-weight:600}
+.meta{color:var(--mut)}
+.ia{border-top:1.5px solid var(--acc);padding-top:16px;max-width:78ch}.ia p{margin:6px 0}.ia>b{display:block;color:var(--acc);font-stretch:75%;font-size:20px;text-transform:lowercase}
+footer{padding:10px 0 50px;color:var(--mut);font-size:13px}
+@media(max-width:760px){.hero,.split,.nowgrid{grid-template-columns:1fr}.steps{grid-template-columns:1fr 1fr}.steps:before{display:none}.slide,.hero{padding:24px}.art.sm{display:none}}
+</style>
 </head>
 <body>
 <a class="skip" href="#main">pular para o conteúdo</a>
@@ -15,7 +105,7 @@
   <div class="hero">
     <div>
       <div class="sq"><i></i><i></i><i></i></div>
-      <h1>pacífico<br>& clima</h1>
+      <h1>el nino<br>em foco</h1>
       <p>Como a temperatura do Oceano Pacífico muda o tempo no mundo e como está o clima agora no Brasil.</p>
       <div class="enso" id="enso" aria-live="polite"></div>
     </div>
@@ -224,6 +314,175 @@
 </footer>
 </div>
 
-<script src="app.js" defer></script>
+<script>
+/* El Niño em foco — Pacífico & Clima | lógica do site (sem dependências) */
+const $=s=>document.querySelector(s);
+const esc=t=>String(t).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+
+/* Ilustrações em traço (estilo gravura) */
+const P=(a,r,c=100)=>[c+r*Math.sin(a),c-r*Math.cos(a)];
+const ART={
+ cloud(){const C='M40 150a22 22 0 0 1 4-43a32 32 0 0 1 60-10a26 26 0 0 1 44 20a20 20 0 0 1 12 33Z';
+  let s='<svg viewBox="0 0 200 200" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><circle cx="78" cy="78" r="30" stroke-width="2.4"/><circle cx="78" cy="78" r="23" stroke-width=".7"/>';
+  for(let i=0;i<40;i++){const a=i*Math.PI/20,p=P(a,38,78),q=P(a,i%2?52:68,78);s+=`<line x1="${p[0]}" y1="${p[1]}" x2="${q[0]}" y2="${q[1]}" stroke-width="${i%2?.8:1.7}"/>`}
+  s+=`<g transform="translate(100 18) scale(.55)"><path d="${C}" transform="translate(5 6)" fill="var(--card)" stroke-width=".9"/><path d="${C}" fill="var(--card)" stroke-width="3.4"/></g>`;
+  s+=`<defs><clipPath id="cc"><path d="${C}"/></clipPath></defs><path d="${C}" transform="translate(6 8)" fill="var(--card)" stroke-width=".9"/><path d="${C}" fill="var(--card)" stroke-width="2.6"/><g clip-path="url(#cc)" stroke-width=".7">`;
+  for(let i=0;i<26;i++)s+=`<line x1="${30+i*6}" y1="152" x2="${44+i*6}" y2="128"/>`;
+  return s+'</g><path d="M52 146Q100 156 150 146" stroke-width="1.2"/></svg>'},
+ waves(){let s='<svg viewBox="0 0 240 170" fill="none" stroke="currentColor" stroke-linecap="round">';
+  for(let r=0;r<10;r++){let d='M0 '+(18+r*15);for(let x=0;x<=240;x+=6)d+=` L${x} ${(18+r*15+Math.sin(x/16+r*.9)*(5+r*.5)).toFixed(1)}`;s+=`<path d="${d}" stroke-width="${(.6+r*.22).toFixed(2)}"/>`}
+  return s+'</svg>'},
+ sun(){let s='<svg viewBox="0 0 200 200" fill="none" stroke="currentColor" stroke-linecap="round"><circle cx="100" cy="100" r="34" stroke-width="2"/><circle cx="100" cy="100" r="26" stroke-width=".7"/>';
+  for(let i=0;i<48;i++){const a=i*Math.PI/24,p=P(a,44),q=P(a,i%2?72:92);s+=`<line x1="${p[0]}" y1="${p[1]}" x2="${q[0]}" y2="${q[1]}" stroke-width="${i%2?.8:1.6}"/>`}
+  for(let i=0;i<9;i++)s+=`<line x1="${80}" y1="${86+i*4}" x2="${120}" y2="${86+i*4}" stroke-width=".5" clip-path="circle(26px at 20px ${14-i*4}px)" opacity="0"/>`;
+  return s+'</svg>'}
+};
+document.querySelectorAll('[data-art]').forEach(e=>e.innerHTML=ART[e.dataset.art]());
+
+/* Abas (com link direto: #info, #clima, #news, #about) */
+const loaded={},TABS=['info','clima','news','about'];
+function showTab(t,push){
+  if(!TABS.includes(t))t='info';
+  document.querySelectorAll('nav button').forEach(x=>x.setAttribute('aria-selected',x.dataset.t===t));
+  tab=t;applyInv();
+  TABS.forEach(id=>$('#'+id).hidden=id!==t);
+  if(!loaded[t]){loaded[t]=1;if(t==='clima')loadClima();if(t==='news')loadNews('br');}
+  if(push)history.replaceState(null,'','#'+t);
+}
+document.querySelectorAll('nav button').forEach(b=>b.onclick=()=>showTab(b.dataset.t,true));
+
+/* El Niño / La Niña */
+const phases={
+ nino:{bg:'linear-gradient(90deg,#d6d5d0,#e19a85 55%,#ca422a)',h:'el niño: águas mais quentes que o normal',
+  t:'Os ventos alísios enfraquecem e a água quente se espalha para o leste do Pacífico. No Brasil, costuma trazer mais chuva e enchentes no Sul, seca e calor no Norte e no Nordeste, e temperaturas mais altas no Sudeste. No mundo, está ligado a secas na Austrália e na Indonésia e a chuvas fortes na costa do Peru.'},
+ nina:{bg:'linear-gradient(90deg,#ca422a,#b9a89f 45%,#3d3b36)',h:'la niña: águas mais frias que o normal',
+  t:'Os ventos alísios ficam mais fortes e empurram a água quente para o oeste, e águas frias afloram no leste. No Brasil, tende a trazer seca no Sul e chuva acima da média no Norte e no Nordeste. No mundo, aumenta a chance de furacões ativos no Atlântico e de seca no sul dos EUA.'},
+ neu:{bg:'linear-gradient(90deg,#d6d5d0,#bdbab2,#d6d5d0)',h:'neutro: sem anomalia marcante',
+  t:'A temperatura do Pacífico fica próxima da média e o clima responde mais a outros fatores, como a Zona de Convergência do Atlântico Sul e as frentes frias. É a fase mais comum entre um evento e outro.'}
+};
+function setPhase(p){
+  document.querySelectorAll('#phase button').forEach(b=>b.setAttribute('aria-pressed',b.dataset.p===p));
+  $('#ocean').style.background=phases[p].bg;
+  $('#phaseText').innerHTML='<h3>'+phases[p].h+'</h3><p style="margin:0">'+phases[p].t+'</p>';
+}
+document.querySelectorAll('#phase button').forEach(b=>b.onclick=()=>setPhase(b.dataset.p));
+setPhase('nino');
+
+/* Clima */
+const wc=c=>c===0?'Céu limpo':c<=2?'Parcialmente nublado':c===3?'Nublado':c<=48?'Neblina':c<=57?'Garoa':c<=67?'Chuva':c<=77?'Neve':c<=82?'Pancadas de chuva':c<=99?'Tempestade':'—';
+let city={n:'São Paulo',la:-23.55,lo:-46.63};
+async function loadClima(){loadCity();loadMap()}
+async function loadCity(){
+  $('#cityTitle').textContent=city.n.toLowerCase()+' agora';
+  try{
+    const r=await fetch('https://api.open-meteo.com/v1/forecast?latitude='+city.la+'&longitude='+city.lo+'&current=temperature_2m,apparent_temperature,relative_humidity_2m,wind_speed_10m,weather_code&daily=temperature_2m_max,temperature_2m_min,weather_code,precipitation_probability_max,precipitation_sum,wind_gusts_10m_max&timezone=auto&forecast_days=5');
+    const d=await r.json(),c=d.current,dy=d.daily;
+    $('#sp').innerHTML='<div class="nowgrid"><div class="slide solid" style="margin:0;padding:24px"><div class="big">'+Math.round(c.temperature_2m)+'°</div><p style="margin:12px 0 0"><b>'+wc(c.weather_code)+'</b><br>Sensação '+Math.round(c.apparent_temperature)+'° · Umidade '+c.relative_humidity_2m+'%<br>Vento '+Math.round(c.wind_speed_10m)+' km/h</p></div><div class="days">'+
+      dy.time.map((t,i)=>'<div class="box day"><b>'+new Date(t+'T12:00').toLocaleDateString('pt-BR',{weekday:'short',day:'numeric'})+'</b>'+wc(dy.weather_code[i])+'<br>'+Math.round(dy.temperature_2m_max[i])+'° / '+Math.round(dy.temperature_2m_min[i])+'°<br><span class="meta">chuva '+(dy.precipitation_probability_max[i]??0)+'%</span></div>').join('')+'</div></div>';
+    showAlerts(dy);
+  }catch(e){$('#sp').innerHTML='<span class="err">Não foi possível carregar o tempo. Verifique a conexão e recarregue.</span>';$('#alerts').textContent='Sem dados de previsão no momento.'}
+}
+/* Alertas automáticos (critérios nossos, não oficiais) */
+function showAlerts(dy){
+  const out=[];
+  dy.time.forEach((t,i)=>{
+    const day=new Date(t+'T12:00').toLocaleDateString('pt-BR',{weekday:'long',day:'numeric',month:'short'});
+    const mm=dy.precipitation_sum[i]||0,g=dy.wind_gusts_10m_max[i]||0,tx=dy.temperature_2m_max[i]||0;
+    if(mm>=50)out.push(['chuva muito forte',day,'Previsão de cerca de '+Math.round(mm)+' mm. Evite áreas alagáveis e encostas, não atravesse ruas alagadas e acompanhe a Defesa Civil (199).']);
+    else if(mm>=30)out.push(['chuva forte',day,'Previsão de cerca de '+Math.round(mm)+' mm. Atenção a alagamentos e deslizamentos; evite sair em horários de pico de chuva.']);
+    if(g>=60)out.push(['rajadas de vento',day,'Rajadas de até '+Math.round(g)+' km/h. Fique longe de árvores, placas e fios, e prenda objetos soltos.']);
+    if(tx>=35)out.push(['calor intenso',day,'Máxima de '+Math.round(tx)+'°. Beba água, evite o sol entre 10h e 16h e proteja crianças, idosos e animais.']);
+  });
+  $('#alerts').innerHTML=out.length?out.map(a=>'<div class="box alert"><h3>'+a[0]+'</h3><p><b>'+esc(a[1])+'</b><br>'+esc(a[2])+'</p></div>').join(''):'<div class="box"><h3>sem alertas</h3><p>Nenhum alerta pelos nossos critérios nos próximos 5 dias.</p></div>';
+}
+/* Busca de cidade (geocodificação Open-Meteo) */
+async function searchCity(){
+  const q=$('#q').value.trim(),box=$('#res');if(q.length<2)return;
+  box.textContent='Buscando…';
+  try{
+    const r=await fetch('https://geocoding-api.open-meteo.com/v1/search?name='+encodeURIComponent(q)+'&count=6&language=pt&format=json');
+    const d=await r.json(),a=d.results||[];
+    if(!a.length){box.textContent='Nenhuma cidade encontrada.';return}
+    box.innerHTML='';
+    a.forEach(c=>{const b=document.createElement('button');b.textContent=[c.name,c.admin1,c.country].filter(Boolean).join(', ');
+      b.onclick=()=>{city={n:c.name,la:c.latitude,lo:c.longitude};box.innerHTML='';$('#q').value='';loadCity()};box.appendChild(b)});
+  }catch(e){box.innerHTML='<span class="err">Não foi possível buscar a cidade agora.</span>'}
+}
+$('#qb').onclick=searchCity;
+$('#q').addEventListener('keydown',e=>{if(e.key==='Enter')searchCity()});
+const UF=[['RR',2,0,2.82,-60.67],['AP',4,0,0.03,-51.07],['AM',1,1,-3.12,-60.02],['PA',3,1,-1.46,-48.5],['MA',4,1,-2.53,-44.3],['CE',5,1,-3.73,-38.52],['RN',6,1,-5.79,-35.21],
+['AC',0,2,-9.97,-67.81],['RO',1,2,-8.76,-63.9],['MT',2,2,-15.6,-56.1],['TO',3,2,-10.18,-48.33],['PI',4,2,-5.09,-42.8],['PE',5,2,-8.05,-34.88],['PB',6,2,-7.12,-34.86],
+['MS',2,3,-20.47,-54.62],['GO',3,3,-16.68,-49.25],['DF',4,3,-15.79,-47.88],['BA',5,3,-12.97,-38.51],['AL',6,3,-9.67,-35.74],
+['MG',4,4,-19.92,-43.94],['ES',5,4,-20.32,-40.34],['SE',6,4,-10.91,-37.07],
+['PR',2,5,-25.43,-49.27],['SP',3,5,-23.55,-46.63],['RJ',4,5,-22.91,-43.17],['SC',2,6,-27.59,-48.55],['RS',2,7,-30.03,-51.23]];
+const S=[[214,213,208],[202,66,42],[90,26,14]];
+const mix=(a,b,t)=>a.map((v,i)=>Math.round(v+(b[i]-v)*t));
+const heat=t=>{const k=Math.max(0,Math.min(1,(t-15)/23));return{k,c:'rgb('+(k<.5?mix(S[0],S[1],k*2):mix(S[1],S[2],(k-.5)*2)).join(',')+')'}};
+async function loadMap(){
+  const box=$('#tiles');
+  try{
+    const r=await fetch('https://api.open-meteo.com/v1/forecast?latitude='+UF.map(u=>u[3]).join(',')+'&longitude='+UF.map(u=>u[4]).join(',')+'&current=temperature_2m&timezone=auto');
+    const d=await r.json();
+    box.innerHTML='';
+    UF.forEach((u,i)=>{const t=d[i].current.temperature_2m,h=heat(t),el=document.createElement('div');
+      el.className='tile';el.style.cssText='grid-column:'+(u[1]+1)+';grid-row:'+(u[2]+1)+';background:'+h.c+';color:'+(h.k<.3?'#2b1712':'#f6e9e4');
+      el.title=u[0]+': '+t+' °C';el.innerHTML=u[0]+'<small>'+Math.round(t)+'°</small>';box.appendChild(el)});
+  }catch(e){box.outerHTML='<p class="err">Não foi possível carregar o mapa.</p>'}
+}
+
+/* Notícias: Google Notícias (RSS via rss2json), com GDELT como reserva */
+const GN={
+ br:'https://news.google.com/rss/search?q='+encodeURIComponent('"El Niño" OR "La Niña" OR "previsão do tempo" OR "onda de calor" when:7d')+'&hl=pt-BR&gl=BR&ceid=BR:pt-419',
+ world:'https://news.google.com/rss/search?q='+encodeURIComponent('"El Nino" OR "La Nina" drought OR flood OR heatwave when:7d')+'&hl=en-US&gl=US&ceid=US:en'};
+const GD={br:'("El Niño" OR "La Niña" OR "previsão do tempo") sourcelang:portuguese',world:'("El Nino" OR "La Nina") sourcelang:english'};
+const fmt=d=>{const x=new Date(String(d).replace(' ','T')+(String(d).includes('T')||String(d).includes('Z')?'':'Z'));return isNaN(x)?'':x.toLocaleDateString('pt-BR')};
+async function fromGoogle(k){
+  const r=await fetch('https://api.rss2json.com/v1/api.json?rss_url='+encodeURIComponent(GN[k]));
+  const d=await r.json();
+  if(d.status!=='ok')throw new Error('rss');
+  return d.items.slice(0,20).map(i=>({t:i.title,u:i.link,s:(i.author||'Google Notícias'),d:fmt(i.pubDate)}));
+}
+async function fromGdelt(k){
+  const r=await fetch('https://api.gdeltproject.org/api/v2/doc/doc?query='+encodeURIComponent(GD[k])+'&mode=artlist&format=json&maxrecords=20&sort=datedesc&timespan=7d');
+  const d=await r.json();
+  return (d.articles||[]).map(n=>{const s=n.seendate||'';return{t:n.title,u:n.url,s:n.domain,d:s?s.slice(6,8)+'/'+s.slice(4,6)+'/'+s.slice(0,4):''}});
+}
+async function loadNews(k){
+  const l=$('#list');l.textContent='Carregando…';
+  let a=[];
+  try{a=await fromGoogle(k)}catch(e){try{a=await fromGdelt(k)}catch(e2){}}
+  if(!a.length){l.innerHTML='<span class="err">Não foi possível carregar as notícias. Se abriu o arquivo direto do computador, hospede-o (GitHub Pages, Netlify) ou sirva com <code>python -m http.server</code>.</span>';return}
+  l.innerHTML=a.map(n=>'<a href="'+esc(n.u)+'" target="_blank" rel="noopener"><span><b>'+esc(n.t)+'</b><br><small>'+esc(n.s)+(n.d?' · '+n.d:'')+'</small></span></a>').join('');
+}
+document.querySelectorAll('#nf button').forEach(b=>b.onclick=()=>{
+  document.querySelectorAll('#nf button').forEach(x=>x.setAttribute('aria-pressed',x===b));
+  loadNews(b.dataset.q)});
+
+/* Selo do ENOS: lê data/enso-status.json (atualizar a cada boletim mensal da NOAA/CPC) */
+const ENSO_PADRAO={fase:'el niño em atuação',txt:'Segundo a NOAA, o El Niño continua se fortalecendo e um evento forte a muito forte é provável até jan–mar de 2027 (chance acima de 79%). Niño-3.4: +2,5 °C.',data:'2026-11-12',prox:'2026-12-10',url:'https://www.cpc.ncep.noaa.gov/products/analysis_monitoring/enso_advisory/ensodisc.shtml'};
+const fdata=iso=>new Date(iso+'T12:00:00').toLocaleDateString('pt-BR');
+async function loadEnso(){
+  let e=ENSO_PADRAO;
+  try{const r=await fetch('data/enso-status.json',{cache:'no-cache'});if(r.ok)e=await r.json()}catch(_){}
+  const velho=new Date()>new Date(e.prox+'T23:59:59');
+  $('#enso').innerHTML='agora no pacífico<b>'+esc(e.fase)+'</b>'+esc(e.txt)+(velho?'<br><strong>Possivelmente desatualizado: a data da próxima atualização já passou. Confira a fonte.</strong>':'')+'<br><small>Boletim de '+fdata(e.data)+' · próximo em '+fdata(e.prox)+' · <a href="'+esc(e.url)+'" target="_blank" rel="noopener">fonte: NOAA</a></small>';
+}
+loadEnso();
+
+/* Acessibilidade */
+let tab='info',zi=1,hc=false;const ZS=[.9,1,1.15,1.3];
+function applyInv(){document.body.classList.toggle('inv',!hc&&(tab==='clima'||tab==='about'))}
+function applyA(){document.querySelector('.wrap').style.zoom=ZS[zi];document.body.classList.toggle('hc',hc);$('#hc').setAttribute('aria-pressed',hc);applyInv();
+  try{localStorage.setItem('a11y',JSON.stringify({zi,hc}))}catch(e){}}
+try{const v=JSON.parse(localStorage.getItem('a11y')||'null');if(v){zi=v.zi;hc=v.hc}}catch(e){}
+$('#fm').onclick=()=>{zi=Math.max(0,zi-1);applyA()};
+$('#fz').onclick=()=>{zi=1;applyA()};
+$('#fp').onclick=()=>{zi=Math.min(3,zi+1);applyA()};
+$('#hc').onclick=()=>{hc=!hc;applyA()};
+applyA();
+
+/* Inicialização: abre a aba indicada no endereço (#clima etc.) */
+showTab(location.hash.slice(1));
+</script>
 </body>
 </html>
